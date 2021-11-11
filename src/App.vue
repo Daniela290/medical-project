@@ -3,9 +3,10 @@
     <Navbar/>
     <Header id="home"/>
     <AboutUs id="aboutUs"/>
+    <Futures/>
     <Services id="services"/>
     <Portfolio id="portfolio"/>
-    <Futures id="futures"/>
+    <Blog id="futures"/>
     <ContactUs id="contactUs"/>
     <Footer/>
   </div>
@@ -21,10 +22,11 @@ import Futures from "@/components/Futures";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
+import Blog from "@/components/Blog";
 
 export default {
   name: 'App',
-  components: {Footer, Services, Portfolio, Futures, AboutUs, ContactUs, Header, Navbar},
+  components: {Blog, Footer, Services, Portfolio, Futures, AboutUs, ContactUs, Header, Navbar},
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
-  <div class="about-us wrapper">
+  <div class="about-us wrapper"
+       :class="{'about-us-night-bg':$store.state.theme}">
 
     <div class="content about-us__content">
 
@@ -35,7 +36,9 @@ export default {
 
 <style lang="scss">
 @import "../assets/styles/variables";
-
+.about-us-night-bg{
+  background-color: $dark-color;
+}
 .about-us {
   min-height: 100vh;
   padding-top: 110px;

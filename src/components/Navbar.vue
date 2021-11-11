@@ -40,6 +40,22 @@
       </div>
     </div>
 
+    <div class="tumbler-theme">
+
+      <div class="toggle-button-cover">
+        <div class="button-cover">
+          <div class="button r" id="button-1">
+            <input type="checkbox" class="checkbox" @change="$store.dispatch('setChangeToTheme')">
+            <div class="knobs">
+              <ion-icon :name="$store.getters.theme?'sunny':'moon'"></ion-icon>
+            </div>
+            <div class="layer"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -80,7 +96,7 @@ export default {
     let observer = new IntersectionObserver((entries, observe) => {
       entries.forEach(
           entry => {
-            if(entry.isIntersecting) {
+            if (entry.isIntersecting) {
               //console.log(entry.target)
               this.navigationEL.forEach((el) => {
                 if (el.el === '#' + entry.target.id) el.isActive = true
