@@ -1,5 +1,6 @@
 <template>
-  <div class="navbar wrapper">
+  <div class="navbar wrapper"
+       :class="$store.getters.theme?'navbar-light':'navbar-dark'">
 
     <div class="content navbar__content">
 
@@ -7,24 +8,29 @@
 
         <div class="logo">
           <span class="logo__first-letter">M</span>
-          <span class="logo__other-letters">EDICAL</span>
+          <span :class="$store.getters.theme?'logo__other-letters-light':'logo__other-letters-dark'">EDICAL</span>
         </div>
 
         <div class="navigation">
           <div v-for="(el,index) of navigationEL"
                :key="index"
-               class="text navbar__text"
+               class="text"
+               :class="!$store.getters.theme?'navbar__text-light':'navbar__text-dark'"
                @click="clickHandler(index)"
                v-scroll-to="{ el: `${el.el}`, duration: 500, x: false, y: true}">
             {{ el.tittle }}
-            <span :class="{'navbar_text_underline':el.isActive}"></span>
+            <span
+                :class="[{'navbar_text_underline-light':el.isActive&& !$store.getters.theme},{'navbar_text_underline-dark':el.isActive&& $store.getters.theme}]"></span>
           </div>
         </div>
 
       </div>
 
       <div class="btn-wrapper">
-        <button class="btn navbar__btn">GET STARTED</button>
+        <button class="btn navbar__btn"
+                :class="$store.getters.theme?'navbar__btn-light':'navbar__btn-dark'">
+          GET STARTED
+        </button>
       </div>
 
     </div>
@@ -33,10 +39,16 @@
       <div v-for="(el,index) of navigationEL"
            :key="index"
            class="navbar-menu__el"
+           :class="$store.getters.theme?'navbar-menu__el-light':'navbar-menu__el-dark'"
            @click="clickHandler(index)"
            v-scroll-to="{ el: `${el.el}`, duration: 500, x: false, y: true}">
+
         <ion-icon class="navbar-menu__icon" :md=el.iconName></ion-icon>
-        <span class="text navbar-menu__text">{{ el.tittle }}</span>
+
+        <span class="text navbar-menu__text"
+              :class="$store.getters.theme?'navbar-menu__text-light':'navbar-menu__text-dark'">
+          {{ el.tittle }}
+        </span>
       </div>
     </div>
 
@@ -119,28 +131,42 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables";
 
+.navbar-dark {
+  background: rgba($portfolio-bg, .5);
+}
+
+.navbar-light {
+  background: rgba($dark-color, .4);
+}
+
 .navbar {
-  background: rgba($portfolio-bg, .6);
   height: 106px;
   position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
 
-  &__text {
+  &__text-light {
     color: $dark-color;
     position: relative;
     cursor: pointer;
   }
 
-  &__text:hover:before {
+  &__text-dark {
+    color: $portfolio-bg;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__text-light:hover:before,
+  &__text-dark:hover:before {
     //transform: scaleX(1);
     width: 100%;
     opacity: .7;
     left: 0;
   }
 
-  .navbar_text_underline {
+  .navbar_text_underline-light {
     width: 100%;
     transform: scaleX(1);
     left: 0;
@@ -152,7 +178,19 @@ export default {
     transition: .3s linear;
   }
 
-  &__text::before {
+  .navbar_text_underline-dark {
+    width: 100%;
+    transform: scaleX(1);
+    left: 0;
+    position: absolute;
+    opacity: .7;
+    height: 2px;
+    bottom: 0;
+    background-color: $portfolio-bg;
+    transition: .3s linear;
+  }
+
+  &__text-light::before {
     content: '';
     position: absolute;
     // transform: scaleX(0);
@@ -166,10 +204,32 @@ export default {
     transition: .3s linear;
   }
 
+  &__text-dark::before {
+    content: '';
+    position: absolute;
+    // transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    opacity: .3;
+    // width: 100%;
+    width: 0;
+    right: 0;
+    background-color: $portfolio-bg;
+    transition: .3s linear;
+  }
+
   &__btn {
-    color: rgb(255, 255, 255);
     background-color: $blue-color;
     width: 4.939cm;
+  }
+
+  &__btn-light {
+    color: rgb(255, 255, 255);
+  }
+
+  &__btn-dark {
+    color: rgba($dark-color, .8);
+    font-weight: bolder;
   }
 
   &__content {
@@ -193,8 +253,12 @@ export default {
     color: $blue-color;
   }
 
-  &__other-letters {
+  &__other-letters-dark {
     color: $dark-color;
+  }
+
+  &__other-letters-light {
+    color: $portfolio-bg;
   }
 }
 

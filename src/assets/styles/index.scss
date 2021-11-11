@@ -108,7 +108,6 @@
 
 .btn:hover {
   font-size: 0.463cm;
-  height: 64px;
 }
 
 .title {
@@ -132,25 +131,30 @@
   left: 4px;
 
   &__text {
-    color: $dark-color;
     position: relative;
     transform: translateX(20px);
     opacity: 0;
     transition: transform .3s linear, opacity .7s linear;
   }
 
-  ion-icon {
+  &__text-dark {
     color: $dark-color;
+  }
+
+  &__text-light {
+    color: $portfolio-bg;
+  }
+
+  ion-icon {
+    //color: $dark-color;
     font-size: 42px;
     display: block;
     margin: auto 17px;
-    opacity: .8;
     position: absolute;
     transition: .3s linear;
   }
 
   &__el {
-    background: rgba($portfolio-bg, .6);
     width: 73px;
     height: 73px;
     border: none;
@@ -161,6 +165,24 @@
     margin-bottom: 4px;
     transition: .4s linear;
     cursor: pointer;
+  }
+
+  &__el-light {
+    background: rgba($dark-color, .4);
+
+    ion-icon {
+      opacity: .9;
+      color: $portfolio-bg;
+    }
+  }
+
+  &__el-dark {
+    background: rgba($portfolio-bg, .6);
+
+    ion-icon {
+      opacity: .8;
+      color: $dark-color;
+    }
   }
 
   &__el:hover {
@@ -216,8 +238,7 @@
   top: 64px;
   right: 4px;
 
-  .toggle-button-cover
-  {
+  .toggle-button-cover {
     display: table-cell;
     position: relative;
     width: 120px;
@@ -225,8 +246,7 @@
     box-sizing: border-box;
   }
 
-  .button-cover
-  {
+  .button-cover {
     height: 100px;
     margin: 20px;
     //background-color: #fff;
@@ -234,21 +254,19 @@
     border-radius: 4px;
   }
 
-  .button-cover:before
-  {
+  .button-cover:before {
     counter-increment: button-counter;
     //content: counter(button-counter);
     position: absolute;
     right: 0;
     bottom: 0;
-   // color: #d7e3e3;
+    // color: #d7e3e3;
     font-size: 12px;
     line-height: 1;
     padding: 5px;
   }
 
-  .button-cover, .knobs, .layer
-  {
+  .button-cover, .knobs, .layer {
     position: absolute;
     top: 0;
     right: 0;
@@ -256,8 +274,7 @@
     left: 0;
   }
 
-  .button
-  {
+  .button {
     opacity: .97;
     position: relative;
     top: 50%;
@@ -267,18 +284,15 @@
     overflow: hidden;
   }
 
-  .button.r, .button.r .layer
-  {
+  .button.r, .button.r .layer {
     border-radius: 100px;
   }
 
-  .button.b2
-  {
+  .button.b2 {
     border-radius: 2px;
   }
 
-  .checkbox
-  {
+  .checkbox {
     position: relative;
     width: 100%;
     height: 100%;
@@ -289,13 +303,11 @@
     z-index: 3;
   }
 
-  .knobs
-  {
+  .knobs {
     z-index: 2;
   }
 
-  .layer
-  {
+  .layer {
     width: 100%;
     opacity: .4;
     background-color: #c7ecfc;
@@ -304,14 +316,13 @@
   }
 
   /* Button 1 */
-  #button-1 .knobs
-  {
+  #button-1 .knobs {
     position: absolute;
     top: 4px;
     left: 6px;
     width: 30px;
     height: 27px;
-    color:#faf3c6;
+    color: #faf3c6;
     font-size: 26px;
     font-weight: bold;
     text-align: center;
@@ -322,21 +333,18 @@
     transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
   }
 
-  #button-1 .checkbox:checked + .knobs
-  {
+  #button-1 .checkbox:checked + .knobs {
     left: 49px;
-    color:#ffd900 ;
+    color: #ffd900;
     background-color: $dark-color;
   }
 
-  #button-1 .checkbox:checked ~ .layer
-  {
+  #button-1 .checkbox:checked ~ .layer {
     opacity: .4;
     background-color: #737373;
   }
 
-  #button-1 .knobs, #button-1 .knobs, #button-1 .layer
-  {
+  #button-1 .knobs, #button-1 .knobs, #button-1 .layer {
     transition: 0.3s ease all;
   }
 }
