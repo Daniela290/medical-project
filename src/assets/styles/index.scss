@@ -1,0 +1,188 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  word-wrap: break-word;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  max-width: calc(41 * 37px);
+}
+
+.text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 780px;
+}
+
+@media screen and (max-width: 1485px) {
+  .content {
+    width: 86%;
+  }
+
+  .about-us__content, .header__content {
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .content {
+    width: 90%;
+  }
+
+  .about-us__content, .header__content {
+    margin-left: 100px;
+  }
+
+  .navigation {
+    gap: 28px;
+  }
+
+  .text-wrapper {
+    width: 720px;
+  }
+}
+
+@media screen and (max-width: 1065px) {
+  .content {
+    width: 92%;
+  }
+
+  .navigation {
+    gap: 20px;
+  }
+
+  .text-wrapper {
+    width: 650px;
+  }
+
+  .logo {
+    font-size: 0.747cm;
+  }
+}
+
+@media screen and (max-width: 945px) {
+
+  .navigation {
+    display: none;
+  }
+}
+
+
+.text {
+  font-size: 0.5354cm;
+  font-family: "Roboto";
+  line-height: 2.142;
+  font-weight: 600;
+}
+
+.btn-wrapper{height: 65px}
+
+.btn {
+  font-size: 0.423cm;
+  font-family: "Roboto";
+  text-transform: uppercase;
+  line-height: 2.501;
+  height: 62px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.btn:hover {
+  font-size: 0.463cm;
+  height: 64px;
+}
+
+.title {
+  font-size: 1.27cm;
+  font-family: "Roboto";
+  font-weight: bold;
+}
+
+.before-title {
+  font-size: 0.67cm;
+  font-family: "Roboto";
+  text-transform: uppercase;
+}
+
+
+//Боковое меню сайта для определенной ширины
+.navbar-menu {
+  position: fixed;
+  z-index: 10;
+  top: 110px;
+  left: 4px;
+
+  &__text {
+    color: $dark-color;
+    position: relative;
+    transform: translateX(20px);
+    opacity: 0;
+    transition: transform .3s linear, opacity .7s linear;
+  }
+
+  ion-icon {
+    color: $dark-color;
+    font-size: 42px;
+    display: block;
+    margin: auto 17px;
+    opacity: .8;
+    position: absolute;
+    transition: .3s linear;
+  }
+
+  &__el {
+    background: rgba($portfolio-bg, .6);
+    width: 73px;
+    height: 73px;
+    border: none;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    transition: .4s linear;
+    cursor: pointer;
+  }
+
+  &__el:hover {
+    width: 190px;
+    height: 85px;
+  }
+
+  &__el:hover ion-icon {
+    font-size: 49px;
+    opacity: .9;
+  }
+
+  &__el:hover &__text {
+    transform: translateX(90px);
+    opacity: .7;
+  }
+
+}
+
+
+
+
+
+
+
+
+
