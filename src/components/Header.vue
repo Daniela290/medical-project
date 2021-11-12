@@ -6,7 +6,8 @@
       <div class="text-wrapper header__text-wrapper">
 
 
-        <div class="header__title">
+        <div class="header__title"
+             :class="$store.getters.theme?'header__title-light':'header__title-dark'">
 
           <span>
             The best doctors in
@@ -22,7 +23,8 @@
 
         </div>
 
-        <div class="header__text">
+        <div class="header__text"
+             :class="$store.getters.theme?'header__text-light':'header__text-dark'">
           Lorem ipsum dolor sit amet, consectetur adipisicing
           elit, sed do eiusmod tempor incididunt ut labore et
           doloremagna aliqua. Ut enim ad minim veniam,
@@ -30,7 +32,10 @@
         </div>
 
         <div class="btn-wrapper">
-        <button class="btn header__btn">GET STARTED NOW</button>
+          <button class="btn header__btn"
+                  :class="$store.getters.theme?'header__btn-light':'header__btn-dark'">
+            GET STARTED NOW
+          </button>
         </div>
       </div>
 
@@ -66,9 +71,17 @@ export default {
   }
 
   &__btn {
+    width: 7.056cm;
+  }
+
+  &__btn-light {
     color: $footer-bg;
     background-color: #ffff;
-    width: 7.056cm;
+  }
+
+  &__btn-dark {
+    color: $portfolio-bg;
+    background-color: $dark-color;
   }
 
   &__text {
@@ -79,10 +92,19 @@ export default {
     line-height: 1.666;
   }
 
+  &__text-light,&__title-light {
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 5px rgba($dark-color,.3);
+  }
+
+  &__text-dark,&__title-dark {
+    color: $dark-color;
+    text-shadow: 0 0 5px rgba(#ffff,.7);
+  }
+
   &__title {
     span {
       font-family: "Roboto";
-      color: rgb(255, 255, 255);
       text-align: left;
     }
   }
@@ -122,8 +144,7 @@ export default {
     }
 
     &__title span:nth-of-type(1),
-    &__title span:nth-of-type(2)
-    {
+    &__title span:nth-of-type(2) {
       font-size: 1.819cm;
     }
 
