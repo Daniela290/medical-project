@@ -1,17 +1,23 @@
 <template>
-  <div class="services wrapper">
+  <div class="services wrapper"
+       :class="$store.getters.theme?'services-light-theme':'services-dark-theme'">
 
     <div class="content services__content">
 
       <div v-for="(type,index) of serviceTypes "
            :key="index"
-           class="services-type">
+           class="services-type"
+           :class="$store.getters.theme?'services-type-light-theme':'services-type-dark-theme'">
 
         <img class="services-type__img" :src="require(`../assets/image/${type.logo}`)">
 
-        <div class="services-type__title">{{ type.title }}</div>
+        <div class="services-type__title"
+             :class="$store.getters.theme?'services-text-light-theme':'services-text-dark-theme'">{{ type.title }}
+        </div>
 
-        <div class="services-type__text text">{{ type.text }}</div>
+        <div class="services-type__text text"
+             :class="$store.getters.theme?'services-text-light-theme':'services-text-dark-theme'">{{ type.text }}
+        </div>
 
       </div>
 
@@ -67,6 +73,23 @@ export default {
 
 .services {
   min-height: 100vh;
+  padding: 110px 40px;
+
+  &-light-theme {
+    background: none;
+  }
+
+  &-dark-theme {
+    background-color: $dark-color;
+  }
+
+  &-text-light-theme {
+    color: $dark-color;
+  }
+
+  &-text-dark-theme {
+    color: $portfolio-bg;
+  }
 
   &__content {
     display: flex;
@@ -99,14 +122,12 @@ export default {
     &__title {
       font-size: 0.635cm;
       font-family: "Roboto";
-      color: $dark-color;
       text-align: center;
       font-weight: 600;
       transition: .3s linear;
     }
 
     &__text {
-      color: $dark-color;
       line-height: 1.876 !important;
       text-align: center;
       opacity: 0.702;
@@ -114,8 +135,12 @@ export default {
     }
   }
 
-  &-type:hover {
+  &-type-light-theme:hover {
     box-shadow: 10px 10px 30px rgba($form-color, .7), 0 0 10px rgba($form-color, .4);
+  }
+
+  &-type-dark-theme:hover {
+    box-shadow: 10px 10px 30px rgba($portfolio-bg, .7), 0 0 10px rgba($portfolio-bg, .4);
   }
 
   &-type:hover &-type__img {

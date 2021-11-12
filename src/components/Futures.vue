@@ -4,16 +4,26 @@
     <div class="futures-row">
 
       <div class="futures-img">
-        <span class="futures__title-span">learn more about</span>
+        <span class="futures__title-span"
+              :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
+          learn more about
+        </span>
       </div>
 
       <div class="futures-info">
 
-        <div class="before-title futures__before-title">features</div>
+        <div class="before-title futures__before-title"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
+          features
+        </div>
 
-        <div class="title futures__title">Professional surgeons</div>
+        <div class="title futures__title"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
+          Professional surgeons
+        </div>
 
-        <div class="text futures__text">
+        <div class="text futures__text"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
           em ipsum dolor sit amet, consectetur adipisicing elit,
           sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -30,11 +40,17 @@
 
       <div class="futures-info">
 
-        <div class="before-title futures__before-title">features</div>
+        <div class="before-title futures__before-title"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">features
+        </div>
 
-        <div class="title futures__title">Emergency care for children</div>
+        <div class="title futures__title"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
+          Emergency care for children
+        </div>
 
-        <div class="text futures__text">
+        <div class="text futures__text"
+             :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">
           em ipsum dolor sit amet, consectetur adipisicing elit,
           sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -46,7 +62,8 @@
       </div>
 
       <div class="futures-img">
-        <span class="futures__title-span">learn more about</span>
+        <span class="futures__title-span"
+              :class="$store.getters.theme?'futures-text-light-theme':'futures-text-dark-theme'">learn more about</span>
       </div>
 
     </div>
@@ -98,7 +115,7 @@ export default {
       //background: linear-gradient(45deg,rgba($blue-color,.8),rgba($blue-color,.8)),url("../assets/image/future-operating-table.jpg");
       position: absolute;
       opacity: 0;
-      transform: scale(0,0);
+      transform: scale(0, 0);
       transition: .4s linear;
       display: flex;
       align-items: center;
@@ -106,9 +123,9 @@ export default {
     }
   }
 
-  &-img:hover span{
+  &-img:hover span {
     opacity: 1;
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
 
   &-info {
@@ -122,25 +139,31 @@ export default {
   }
 
   &__title, &__text, &__before-title {
-    color: rgb(255, 255, 255);
     text-align: center;
   }
 
-  &__title{
+  &__title {
     font-weight: 600 !important;
   }
 
-  &__text{
+  &__text {
     width: 60%;
   }
 
   &__title-span {
     font-size: 0.917cm;
     font-family: "Roboto";
-    color: rgb(255, 255, 255);
     text-transform: uppercase;
     line-height: 1.154;
     text-align: center;
+  }
+
+  &-text-light-theme {
+    color: rgb(255, 255, 255);
+  }
+
+  &-text-dark-theme {
+    color: $dark-color;
   }
 
 }

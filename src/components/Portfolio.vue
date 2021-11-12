@@ -1,5 +1,6 @@
 <template>
-  <div class="portfolio wrapper">
+  <div class="portfolio wrapper"
+       :class="$store.getters.theme?'portfolio-light-theme':'portfolio-dark-theme'">
 
     <div class="content portfolio__content">
 
@@ -40,7 +41,12 @@ export default {
 .portfolio {
   min-height: 100vh;
   padding: 110px 40px;
-  background-color: $portfolio-bg;
+
+  &-dark-theme{
+    background-color: rgba(28,28,35,.9);}
+
+  &-light-theme{
+    background-color: $portfolio-bg;}
 
   &__content{
     display: flex;
