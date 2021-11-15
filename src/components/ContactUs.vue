@@ -27,7 +27,7 @@
                :class="{'input-invalid': ($v.subject.$dirty && !$v.subject.required)
                || ($v.subject.$dirty && !$v.subject.minLength)}">
 
-        <textarea class="input input-margin" placeholder="Your message" v-model.trim="yourMessage"></textarea>
+        <textarea class="input input--with-margin" placeholder="Your message" v-model.trim="yourMessage"></textarea>
 
         <button class="submit" type="submit">SUBMIT</button>
 
@@ -122,6 +122,11 @@ export default {
     border-color: red !important;
     opacity: .7;
   }
+
+  &--with-margin {
+    padding-top: 19px;
+    height: 259px;
+  }
 }
 
 @keyframes invalidInput {
@@ -149,11 +154,6 @@ export default {
 .input-invalid::placeholder {
   color: red !important;
   opacity: 0.9;
-}
-
-.input-margin {
-  padding-top: 19px;
-  height: 259px;
 }
 
 .submit {

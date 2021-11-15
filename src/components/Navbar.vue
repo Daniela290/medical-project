@@ -1,6 +1,6 @@
 <template>
   <div class="navbar wrapper"
-       :class="$store.getters.theme?'navbar-light':'navbar-dark'">
+       :class="$store.getters.theme?'navbar--theme--light':'navbar--theme--dark'">
 
     <div class="content navbar__content">
 
@@ -15,12 +15,12 @@
           <div v-for="(el,index) of navigationEL"
                :key="index"
                class="text"
-               :class="!$store.getters.theme?'navbar__text-light':'navbar__text-dark'"
+               :class="!$store.getters.theme?'navbar__text--theme--light':'navbar__text--theme--dark'"
                @click="clickHandler(index)"
                v-scroll-to="{ el: `${el.el}`, duration: 500, x: false, y: true}">
             {{ el.tittle }}
             <span
-                :class="[{'navbar_text_underline-light':el.isActive&& !$store.getters.theme},{'navbar_text_underline-dark':el.isActive&& $store.getters.theme}]"></span>
+                :class="[{'navbar__text--underline--theme--light':el.isActive&& !$store.getters.theme},{'navbar__text--underline--theme--dark':el.isActive&& $store.getters.theme}]"></span>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
 
       <div class="btn-wrapper">
         <button class="btn navbar__btn"
-                :class="$store.getters.theme?'navbar__btn-light':'navbar__btn-dark'">
+                :class="$store.getters.theme?'navbar__btn--theme--light':'navbar__btn--theme--dark'">
           GET STARTED
         </button>
       </div>
@@ -39,14 +39,14 @@
       <div v-for="(el,index) of navigationEL"
            :key="index"
            class="navbar-menu__el"
-           :class="$store.getters.theme?'navbar-menu__el-light':'navbar-menu__el-dark'"
+           :class="$store.getters.theme?'navbar-menu__el--theme--light':'navbar-menu__el--theme--dark'"
            @click="clickHandler(index)"
            v-scroll-to="{ el: `${el.el}`, duration: 500, x: false, y: true}">
 
         <ion-icon class="navbar-menu__icon" :md=el.iconName></ion-icon>
 
         <span class="text navbar-menu__text"
-              :class="$store.getters.theme?'navbar-menu__text-light':'navbar-menu__text-dark'">
+              :class="$store.getters.theme?'navbar-menu__text--theme--light':'navbar-menu__text--theme--dark'">
           {{ el.tittle }}
         </span>
       </div>
@@ -89,7 +89,7 @@ export default {
     clickHandler(index) {
       this.navigationEL.forEach(el => el.isActive = false)
       this.navigationEL[index].isActive = true
-    }
+    },
   },
   mounted() {
     let options = {
@@ -109,7 +109,6 @@ export default {
       entries.forEach(
           entry => {
             if (entry.isIntersecting) {
-              //console.log(entry.target)
               this.navigationEL.forEach((el) => {
                 if (el.el === '#' + entry.target.id) el.isActive = true
                 else el.isActive = false
@@ -124,49 +123,50 @@ export default {
     observer.observe(portfolio)
     observer.observe(futures)
     observer.observe(contactUs)
-  }
+  },
 }
 </script>
 
 <style lang="scss">
 @import "../assets/styles/variables";
 
-.navbar-dark {
-  background: rgba($portfolio-bg, .5);
-}
-
-.navbar-light {
-  background: rgba($dark-color, .4);
-}
-
 .navbar {
+
+  &--theme--light {
+    background: rgba($dark-color, .8);
+  }
+
+  &--theme--dark {
+    background: rgba($portfolio-bg, .8);
+  }
+
   height: 106px;
   position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
 
-  &__text-light {
+  &__text--theme--light {
     color: $dark-color;
     position: relative;
     cursor: pointer;
   }
 
-  &__text-dark {
+  &__text--theme--dark {
     color: $portfolio-bg;
     position: relative;
     cursor: pointer;
   }
 
-  &__text-light:hover:before,
-  &__text-dark:hover:before {
+  &__text--theme--light:hover:before,
+  &__text--theme--dark:hover:before {
     //transform: scaleX(1);
     width: 100%;
     opacity: .7;
     left: 0;
   }
 
-  .navbar_text_underline-light {
+  &__text--underline--theme--light{
     width: 100%;
     transform: scaleX(1);
     left: 0;
@@ -178,7 +178,7 @@ export default {
     transition: .3s linear;
   }
 
-  .navbar_text_underline-dark {
+  &__text--underline--theme--dark {
     width: 100%;
     transform: scaleX(1);
     left: 0;
@@ -190,7 +190,7 @@ export default {
     transition: .3s linear;
   }
 
-  &__text-light::before {
+  &__text--theme--light::before {
     content: '';
     position: absolute;
     // transform: scaleX(0);
@@ -204,7 +204,7 @@ export default {
     transition: .3s linear;
   }
 
-  &__text-dark::before {
+  &__text--theme--dark::before {
     content: '';
     position: absolute;
     // transform: scaleX(0);
@@ -223,13 +223,25 @@ export default {
     width: 4.939cm;
   }
 
-  &__btn-light {
+  &__btn--theme--light {
     color: rgb(255, 255, 255);
   }
 
-  &__btn-dark {
+  &__btn--theme--light:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(107, 194, 241);
+    box-shadow: 0 0 10px #949494, 0 0 15px #91d3f6, 0 0 20px #bbe4fa, 0 0 25px #def0fa;
+  }
+
+  &__btn--theme--dark {
     color: rgba($dark-color, .8);
     font-weight: bolder;
+  }
+
+  &__btn--theme--dark:hover {
+    background-color: rgba($dark-color, .8);
+    color: rgb(107, 194, 241);
+    box-shadow: 0 0 10px #949494, 0 0 19px #91d3f6, 0 0 24px #bbe4fa, 0 0 28px #def0fa;
   }
 
   &__content {
@@ -261,5 +273,4 @@ export default {
     color: $portfolio-bg;
   }
 }
-
 </style>

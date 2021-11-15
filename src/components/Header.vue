@@ -5,7 +5,6 @@
 
       <div class="text-wrapper header__text-wrapper">
 
-
         <div class="header__title"
              :class="$store.getters.theme?'header__title-light':'header__title-dark'">
 
@@ -124,35 +123,4 @@ export default {
 
 }
 
-@media screen and (max-width: 1850px) {
-
-  .header {
-    padding-top: 110px;
-
-    &__text-wrapper {
-      gap: 40px;
-    }
-
-    &__btn {
-      width: 7.056cm;
-    }
-
-    &__text {
-      width: 70%;
-      font-size: 0.605cm;
-      line-height: 1.466;
-    }
-
-    &__title span:nth-of-type(1),
-    &__title span:nth-of-type(2) {
-      font-size: 1.819cm;
-    }
-
-    &__title span:nth-of-type(3) {
-      font-size: 0.717cm;
-    }
-
-  }
-
-}
 </style>
