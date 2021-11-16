@@ -28,6 +28,7 @@
 
       <div class="btn-wrapper">
         <button class="btn navbar__btn"
+                v-scroll-to="{el:'#contactUs', duration:600}"
                 :class="$store.getters.theme?'navbar__btn--theme--light':'navbar__btn--theme--dark'">
           GET STARTED
         </button>

@@ -22,6 +22,7 @@
         </div>
 
         <button class="btn about-us__btn"
+                v-scroll-to="{el:'#contactUs', duration:500}"
                 :class="$store.getters.theme?'about-us__btn--theme--light':'about-us__btn--theme--dark'">
           GET STARTED NOW
         </button>

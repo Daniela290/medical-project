@@ -32,7 +32,8 @@
 
         <div class="btn-wrapper">
           <button class="btn header__btn"
-                  :class="$store.getters.theme?'header__btn-light':'header__btn-dark'">
+                  v-scroll-to="{el:'#contactUs', duration:600}"
+                  :class="$store.getters.theme?'header__btn--theme--light':'header__btn--theme--dark'">
             GET STARTED NOW
           </button>
         </div>
@@ -73,14 +74,26 @@ export default {
     width: 7.056cm;
   }
 
-  &__btn-light {
+  &__btn--theme--light {
     color: $footer-bg;
-    background-color: #ffff;
+    background-color: rgb(255, 255, 255);
   }
 
-  &__btn-dark {
-    color: $portfolio-bg;
-    background-color: $dark-color;
+  &__btn--theme--light:hover {
+    background-color: rgb(255, 255, 255);
+    color: $footer-bg;
+    box-shadow: 0 0 10px $footer-bg, 0 0 19px rgba($footer-bg,.7), 0 0 27px rgba($footer-bg,.5), 0 0 38px rgba($blue-color,.7);
+  }
+
+  &__btn--theme--dark {
+    background-color: rgba($footer-bg, .9);
+    color: rgb(255, 255, 255);
+  }
+
+  &__btn--theme--dark:hover {
+    background-color: rgba($footer-bg, .9);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px #949494, 0 0 19px #91d3f6, 0 0 24px #bbe4fa, 0 0 28px #def0fa;
   }
 
   &__text {

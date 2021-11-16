@@ -1,24 +1,24 @@
 <template>
   <div class="portfolio wrapper"
        :class="[$store.getters.theme?'portfolio-light-theme':'portfolio-dark-theme',
-       isShowSlider?'portfolio--height--with-slider':'portfolio--height--without-slider']">
+       (isShowSlider || !isShowGallery)?'portfolio--height--with-slider':'portfolio--height--without-slider']">
 
     <div class="content portfolio__content"
-         v-if="!isShowSlider">
+         v-if="!isShowSlider && isShowGallery">
 
       <div v-for="(img,index) of portfolioImg "
            :key="index"
            class="portfolio-gallery"
-           @click="isShowSlider=true">
+           @click="clickHandler()">
         <img class="portfolio-gallery__img"
-             :src="require(`../assets/image/${img.title}`)">
-<!--        :class="isShowPortfolioComponent?`portfolio-gallery&#45;&#45;img&#45;&#45;coming${index+1}`:''"-->
+             :src="require(`../assets/image/${img.title}`)"
+             :class="isShowPortfolioComponent?`portfolio-gallery--img--coming${index+1}`:''">
       </div>
 
     </div>
 
     <div class="content portfolio__content"
-         v-if="isShowSlider">
+         v-if="isShowSlider || !isShowGallery">
 
       <carousel-3d>
         <slide v-for="(img,index) of portfolioImg"
@@ -30,7 +30,8 @@
       </carousel-3d>
 
       <button class="btn portfolio__btn"
-              @click="isShowSlider=false">
+              @click="isShowSlider=false"
+              v-if="isShowGallery">
         Back to gallery
       </button>
 
@@ -59,15 +60,16 @@ export default {
         {title: 'portfolio5.png'},
         {title: 'portfolio6.png'},
       ],
-      isShowSlider: false,
-      isShowPortfolioComponent: false
+      isShowSlider: window.innerWidth <= 600 ? true : false,
+      isShowPortfolioComponent: false,
+      isShowGallery: window.innerWidth <= 600 ? false : true
     }
   },
   mounted() {
     let options = {
       root: null,
       rootMargin: '0px',
-      threshold: .25
+      threshold: .1
     }
     let portfolio = document.getElementById('portfolio')
 
@@ -81,6 +83,23 @@ export default {
     }, options)
 
     observer.observe(portfolio)
+  },
+  created() {
+    window.addEventListener('resize', this.updateWidth);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updateWidth);
+  },
+  methods: {
+    updateWidth() {
+      if (window.innerWidth <= 600) {
+        this.isShowGallery = false
+      } else this.isShowGallery = true
+    },
+    clickHandler() {
+      this.isShowSlider = true
+      this.$scrollTo('#portfolio', 100)
+    }
   }
 }
 </script>
@@ -89,14 +108,16 @@ export default {
 @import "../assets/styles/variables";
 
 .portfolio {
-  padding: 110px 40px 20px 40px;
+  padding: 0 30px;
 
   &--height--with-slider {
+    padding: 110px 40px 20px 40px;
     min-height: 500px;
   }
 
   &--height--without-slider {
-    min-height: 100vh;
+    height: auto;
+    padding: 80px 10px -10px 10px;
   }
 
   &-dark-theme {
@@ -132,9 +153,7 @@ export default {
     }
 
     &--img--coming1 {
-      animation: portfolio-img1 1.5s linear;
-      //animation-duration: 1.5s;
-      //animation-timing-function: linear;
+      animation: portfolio-img1 1s linear;
     }
 
     @keyframes portfolio-img1 {
@@ -147,29 +166,22 @@ export default {
     }
 
     &--img--coming2 {
-
-      animation: portfolio-img2 1.5s linear;
-      //animation-name: portfolio-img2;
-      //animation-duration: 1.5s;
-      //animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+      animation: portfolio-img2 1s linear;
     }
 
     @keyframes portfolio-img2 {
       0% {
         opacity: 0;
-        transform: translateY(-50%)
+        transform: translateY(-20px)
       }
       100% {
         opacity: 1;
-        transform: translateY(0%)
+        transform: translateY(0)
       }
     }
 
     &--img--coming3 {
-      animation: portfolio-img3 1.5s linear;
-      //animation-name: portfolio-img3;
-      //animation-duration: 1.5s;
-      //animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+      animation: portfolio-img3 1s linear;
     }
 
     @keyframes portfolio-img3 {
@@ -184,16 +196,13 @@ export default {
     }
 
     &--img--coming4 {
-      animation: portfolio-img4 1.5s linear;
-      //animation-name: portfolio-img4;
-      //animation-duration: 1.5s;
-      //animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+      animation: portfolio-img4 1s linear;
     }
 
     @keyframes portfolio-img4 {
       0% {
         opacity: 0;
-        transform: translate(-100px, 100px);
+        transform: translate(-20px, 20px);
       }
       100% {
         opacity: 1;
@@ -202,10 +211,7 @@ export default {
     }
 
     &--img--coming5 {
-      animation: portfolio-img5 1.5s linear;
-      //animation-name: portfolio-img5;
-      //animation-duration: 1.5s;
-      //animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+      animation: portfolio-img5 1s linear;
     }
 
     @keyframes portfolio-img5 {
@@ -220,16 +226,13 @@ export default {
     }
 
     &--img--coming6 {
-      animation: portfolio-img6 1.5s linear;
-      //animation-name: portfolio-img6;
-      //animation-duration: 1.5s;
-      //animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+      animation: portfolio-img6 1s linear;
     }
 
     @keyframes portfolio-img6 {
       0% {
         opacity: 0;
-        transform: scale(1.9);
+        transform: scale(1.1);
       }
       100% {
         opacity: 1;
