@@ -18,7 +18,7 @@
                || ($v.name.$dirty && !$v.name.maxLength)},
                {'input-valid': ($v.name.required && $v.name.maxLength)},
                $store.getters.theme?'input--light--theme':'input--dark--theme']"
-        autocomplete="new-password">
+               autocomplete="new-password">
 
         <input class="input"
                type="text"
@@ -49,6 +49,17 @@
 
       </form>
 
+      <el-dialog
+          title="Gratitude"
+          :visible.sync="centerDialogVisible"
+          width="30%"
+          center>
+        <span>Thank you for contacting us!</span>
+        <span slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="centerDialogVisible = false">Close</el-button>
+  </span>
+      </el-dialog>
+
     </div>
   </div>
 </template>
@@ -64,7 +75,12 @@ export default {
         this.$v.$touch()
         return
       }
-      console.log('submitHandler')
+      this.centerDialogVisible = true
+      this.name = ''
+      this.email = ''
+      this.subject = ''
+      this.yourMessage = ''
+      this.$v.reset
     }
   },
   validations: {
@@ -87,7 +103,8 @@ export default {
       name: '',
       email: '',
       subject: '',
-      yourMessage: ''
+      yourMessage: '',
+      centerDialogVisible: false
     }
   }
 }
@@ -164,7 +181,7 @@ export default {
       background-color: rgba(red, .2);
     }
 
-    &-valid{
+    &-valid {
       border-width: 1px !important;
       border-color: #01db01 !important;
       opacity: 1;
@@ -211,9 +228,10 @@ export default {
     height: 1.411cm;
   }
 
-  .submit:hover{
+  .submit:hover {
     box-shadow: 0 0 10px $blue-color, 0 0 15px rgba($footer-bg, .6), 0 0 24px rgba($footer-bg, .4);
   }
 
 }
+
 </style>
